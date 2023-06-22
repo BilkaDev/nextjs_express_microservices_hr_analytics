@@ -18,11 +18,13 @@
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/consistent-type-imports": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/no-extraneous-class": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     // to enforce using type for object type definitions, can be type or interface
     "@typescript-eslint/consistent-type-definitions": [
       "error",
-      "type"
+      "interface"
     ]
   },
   "env": {

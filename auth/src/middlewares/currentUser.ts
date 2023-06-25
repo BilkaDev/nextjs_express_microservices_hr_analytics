@@ -25,7 +25,6 @@ export const currentUser = (
     const payload = jwt.verify(
       req.session.jwt,
 
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       process.env.JWT_KEY!
     ) as UserPayload;
     req.currentUser = payload;

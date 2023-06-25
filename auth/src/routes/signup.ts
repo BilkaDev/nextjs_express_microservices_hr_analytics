@@ -40,7 +40,6 @@ router.post(
         lastName: user.lastName,
         firstName: user.firstName
       },
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       process.env.JWT_KEY!
     );
 

@@ -43,7 +43,6 @@ router.post(
         lastName: existingUser.lastName,
         firstName: existingUser.firstName
       },
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       process.env.JWT_KEY!
     );
     // Stored it on session object

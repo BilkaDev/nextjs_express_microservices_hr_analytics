@@ -1,8 +1,10 @@
 import express, { Request, Response } from 'express';
-import { body, validationResult } from 'express-validator';
+import { body } from 'express-validator';
+import jwt from 'jsonwebtoken';
 
-import { BadRequestError, RequestValidationError } from '../errors';
+import { BadRequestError } from '../errors';
 import { User } from '../models/user';
+import { validationRequest } from '../middlewares/validateRequest';
 
 const router = express.Router();
 
@@ -10,18 +12,15 @@ router.post(
   '/api/users/signup',
   [
     body('email').isEmail().withMessage('email must be valid'),
+    body('firstName').trim().isLength({ min: 3, max: 15 }),
+    body('lastName').trim().isLength({ min: 3, max: 15 }),
     body('password')
       .trim()
       .isLength({ min: 3, max: 15 })
       .withMessage('Password must be between 3 and 15 characters')
   ],
+  validationRequest,
   async (req: Request, res: Response) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      throw new RequestValidationError(errors.array());
-    }
-
     const { email } = req.body;
 
     const existingUser = await User.findOne({ email });
@@ -33,6 +32,22 @@ router.post(
     const user = User.build(req.body);
     await user.save();
 
+    // Generate JWT
+    const userJwt = jwt.sign(
+      {
+        id: user.id,
+        email: user.email,
+        lastName: user.lastName,
+        firstName: user.firstName
+      },
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+      process.env.JWT_KEY!
+    );
+
+    // Stored it on session object
+    req.session = {
+      jwt: userJwt
+    };
     res.status(201).send(user);
   }
 );

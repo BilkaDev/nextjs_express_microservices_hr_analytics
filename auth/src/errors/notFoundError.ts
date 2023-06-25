@@ -4,7 +4,7 @@ export class NotFoundError extends CustomError {
   statusCode = 404;
 
   constructor(private readonly customMessage?: string) {
-    super('Not found item');
+    super('Not Found');
     Object.setPrototypeOf(this, NotFoundError.prototype);
   }
 

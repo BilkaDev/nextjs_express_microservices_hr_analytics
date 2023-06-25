@@ -20,6 +20,7 @@
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-extraneous-class": "off",
+    "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     // to enforce using type for object type definitions, can be type or interface
     "@typescript-eslint/consistent-type-definitions": [

@@ -1,1 +1,1 @@
-export const REGISTER_URL = '/auth/register';
+export const REGISTER_URL = '/api/users/signup';

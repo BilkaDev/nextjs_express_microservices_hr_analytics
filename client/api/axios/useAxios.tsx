@@ -13,7 +13,6 @@ export const useAxios = () => {
         'Content-type': 'application/json'
         // Authorization: `Bearer ${accessToken}`
       },
-      baseURL: process.env.REACT_APP_API_URL
     });
   }, []);
 };

@@ -1,7 +1,10 @@
 import { ReactNode } from 'react';
+import { AlertColor } from '@mui/material';
+
+export type ShowSnackbarType = (notification: string, status?: AlertColor) => void
 
 export type SnackbarContextValue = {
-  showSnackbar: (message: string) => void;
+  showSnackbar: ShowSnackbarType;
 };
 
 export type SnackbarProviderProps = {

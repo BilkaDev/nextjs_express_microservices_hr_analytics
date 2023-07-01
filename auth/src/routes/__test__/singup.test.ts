@@ -87,7 +87,7 @@ it('Disallows duplicate email', async () => {
       lastName: 'Dept',
       firstName: 'John'
     })
-    .expect(400);
+    .expect(409);
 });
 
 it('Sets a cookie after successful signup', async () => {

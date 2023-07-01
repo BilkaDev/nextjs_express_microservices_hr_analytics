@@ -9,6 +9,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { AppRoute } from '@/AppRoute';
 import { useTranslate } from '@/contex/translations/useTranslate';
 import { useMutationCustom } from '@/api/useMutationCustom';
+import { useSnackbar } from '@/contex/snackbarContext/useSnackbar';
+
 import {
   REGISTER_URL,
   signUpSchema,
@@ -18,6 +20,7 @@ import {
 import * as styles from './SignUp.styles';
 
 const Page = () => {
+  const { showSnackbar } = useSnackbar();
   const translate = useTranslate();
   const {
     formState: { errors },
@@ -34,6 +37,7 @@ const Page = () => {
       '409': translate('email is already registered')
     }
   });
+  if (error) showSnackbar(error, 'error');
 
   const handleMutation = useCallback(
     async (payload: SignUpSchemaType) => {
@@ -44,16 +48,16 @@ const Page = () => {
   );
   return (
     <Paper sx={styles.container}>
-      <Typography variant="h4" component="h1">
+      <Typography variant='h4' component='h1'>
         {translate('sign up')}
       </Typography>
       <Box
-        component="form"
+        component='form'
         sx={styles.form}
         onSubmit={handleSubmit(handleMutation)}
       >
         <TextField
-          variant="standard"
+          variant='standard'
           label={translate('first name *')}
           {...register('firstName')}
           error={Boolean(errors.firstName)}
@@ -61,7 +65,7 @@ const Page = () => {
           fullWidth
         />
         <TextField
-          variant="standard"
+          variant='standard'
           label={translate('last name *')}
           {...register('lastName')}
           error={Boolean(errors.lastName)}
@@ -69,7 +73,7 @@ const Page = () => {
           fullWidth
         />
         <TextField
-          variant="standard"
+          variant='standard'
           label={translate('email *')}
           {...register('email')}
           error={Boolean(errors.email)}
@@ -77,25 +81,24 @@ const Page = () => {
           fullWidth
         />
         <TextField
-          variant="standard"
+          variant='standard'
           label={translate('password *')}
-          type="password"
+          type='password'
           {...register('password')}
           error={Boolean(errors.password)}
           helperText={errors.password?.message}
           fullWidth
         />
         <TextField
-          variant="standard"
+          variant='standard'
           label={translate('retype password *')}
-          type="password"
+          type='password'
           {...register('retypePassword')}
           error={Boolean(errors.retypePassword)}
           helperText={errors.retypePassword?.message}
           fullWidth
         />
-        {error && <Typography color="error">{error}</Typography>}
-        <Button type="submit" variant="contained" disabled={isLoading}>
+        <Button type='submit' variant='contained' disabled={isLoading}>
           {translate('sign up')}
         </Button>
       </Box>

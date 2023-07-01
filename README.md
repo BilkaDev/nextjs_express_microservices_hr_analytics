@@ -23,6 +23,6 @@ skaffold dev
 create secret for jwt token:
 
 
-kubectl create secret generic jwt-secret --from-literal=jwt=salz
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=salz
 
 

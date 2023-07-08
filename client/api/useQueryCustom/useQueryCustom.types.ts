@@ -10,7 +10,7 @@ export interface UseQueryCustomProps<
   TQueryKey extends QueryKey = QueryKey
 > extends Omit<
     UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
-    'initialData' | 'queryFn'
+    'queryFn'
   > {
   httpErrorMap?: HttpErrorMap;
   url: string;

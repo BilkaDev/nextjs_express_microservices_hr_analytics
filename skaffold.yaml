@@ -25,3 +25,19 @@ build:
         manual:
           - src: '**/*.ts'
             dest: .
+    - image: royal622/jobs
+      context: jobs
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: royal622/candidates
+      context: candidates
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .

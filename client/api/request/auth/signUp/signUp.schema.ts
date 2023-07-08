@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { TranslateType } from '@/contex/translations/translation.types';
+import { TranslateType } from '@/client/contex/translations/translation.types';
 
 export const signUpSchema = (translate: TranslateType) =>
   z

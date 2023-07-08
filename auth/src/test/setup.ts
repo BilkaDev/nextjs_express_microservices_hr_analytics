@@ -11,6 +11,7 @@ declare global {
 
 let mongo: any;
 beforeAll(async () => {
+  // jest.spyOn(console, 'error').mockImplementation(() => {});
   process.env.JWT_KEY = 'SDFSAFS';
   mongo = await MongoMemoryServer.create();
   const mongoUri = mongo.getUri();

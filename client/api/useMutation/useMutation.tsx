@@ -1,6 +1,6 @@
 import { useCallback, useReducer } from 'react';
 
-import { useAxios } from '../axios';
+import { buildClient } from '../axios';
 import { useParseError } from '../error/http-error';
 
 import { defaultState, mutationReducer } from './mutationReducer';
@@ -12,7 +12,7 @@ export const useMutation = <T extends unknown, R extends unknown>({
   httpErrorMap
 }: UseMutationProps<T, R>) => {
   const [state, dispatch] = useReducer(mutationReducer, defaultState);
-  const axios = useAxios();
+  const axios = buildClient();
   const parseError = useParseError();
 
   const onMutate = useCallback(

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import { isAxiosError } from 'axios';
-import { useTranslate } from '@/contex/translations/useTranslate';
+import { useTranslate } from '@/client/contex/translations/useTranslate';
 
 type KnownHttpErrorStatus = '400' | '401' | '404' | '500';
 type KnownHttpErrorMessage = `error_${KnownHttpErrorStatus}`;

@@ -11,5 +11,6 @@ export const en = {
 } as const;
 
 export const availableLanguages = { pl, en };
+
 export const DEFAULT_LOCALE = 'en';
 export type AvailableLocale = keyof typeof availableLanguages;

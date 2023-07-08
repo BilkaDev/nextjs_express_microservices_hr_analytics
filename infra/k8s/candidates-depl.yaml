@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: candidates-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: candidates
+  template:
+    metadata:
+      labels:
+        app: candidates
+    spec:
+      containers:
+        - name: candidates
+          image: royal622/candidates
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://candidates-mongo-srv:27017/candidates'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: candidates-srv
+spec:
+  selector:
+    app: candidates
+  ports:
+    - name: candidates
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

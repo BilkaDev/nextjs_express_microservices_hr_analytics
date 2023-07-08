@@ -1,6 +1,8 @@
+'use client';
+
 import { useMutation } from '@tanstack/react-query';
 
-import { useAxios } from '../axios';
+import { buildClient } from '../axios';
 import { useParseError } from '../error/http-error';
 
 import { UseMutationProps } from './useMutationCustom.types';
@@ -17,7 +19,7 @@ export const useMutationCustom = <
   ...options
 }: UseMutationProps<TData, TError, TVariables, TContext>) => {
   const parseError = useParseError();
-  const axios = useAxios();
+  const axios = buildClient();
 
   const { error, ...mutation } = useMutation({
     mutationFn: payload => mutationFn(axios)(payload),

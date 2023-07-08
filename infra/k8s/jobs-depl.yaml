@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jobs-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jobs
+  template:
+    metadata:
+      labels:
+        app: jobs
+    spec:
+      containers:
+        - name: jobs
+          image: royal622/jobs
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://jobs-mongo-srv:27017/jobs'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jobs-srv
+spec:
+  selector:
+    app: jobs
+  ports:
+    - name: jobs
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

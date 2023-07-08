@@ -1,1 +1,1 @@
-export const SIGNIN_URL = '/auth/login';
+export const SIGNIN_URL = '/api/users/signin';

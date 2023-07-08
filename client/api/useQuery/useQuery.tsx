@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useReducer } from 'react';
 
-import { useAxios } from '../axios';
+import { buildClient } from '../axios';
 import { useParseError } from '../error/http-error';
 
 import { defaultState, queryReducer } from './queryReducer';
@@ -16,7 +16,7 @@ export const useQuery = <T extends unknown>({
   const [state, dispatch] = useReducer<
     (state: QueryState<T>, action: QueryAction) => QueryState<T>
   >(queryReducer, defaultState);
-  const axios = useAxios();
+  const axios = buildClient();
   const parseError = useParseError();
 
   const onQuery = useCallback(async () => {

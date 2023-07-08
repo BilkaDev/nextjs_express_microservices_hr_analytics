@@ -1,10 +1,9 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
+import { validationRequest, ConflictError } from '@bdhranalytics/common';
 
 import { User } from '../models/user';
-import { validationRequest } from '../middlewares/validateRequest';
-import { ConflictError } from '../errors/conflictError';
 
 const router = express.Router();
 

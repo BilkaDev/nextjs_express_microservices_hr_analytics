@@ -1,6 +1,7 @@
 import express, { json } from 'express';
 import 'express-async-errors';
 import cookieSession from 'cookie-session';
+import { errorHandler, NotFoundError } from '@bdhranalytics/common';
 
 import {
   currentUserRouter,
@@ -8,8 +9,6 @@ import {
   signoutRouter,
   signupRouter
 } from './routes';
-import { errorHandler } from './middlewares/errorHandler';
-import { NotFoundError } from './errors';
 
 export const app = express();
 app.set('trust proxy', true);

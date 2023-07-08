@@ -1,8 +1,11 @@
 export type Profile = {
   firstName: string;
   lastName: string;
-  id: number;
+  id: string;
   email: string;
-  createdAt: string;
-  updatedAt: string;
+  iat: number;
+};
+
+export type ProfileAuthResponse = {
+  currentUser: Profile | null;
 };

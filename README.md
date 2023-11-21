@@ -3,7 +3,7 @@ This repository contains a HR analytics application built with a microservices a
 
 
 https://kubernetes.github.io/ingress-nginx/developer-guide/getting-started/
-
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
 
 add to host:
 ```
